@@ -10,29 +10,39 @@
 
 ---
 
-## 🔁 Alur Kerja Proyek (End-to-End)
+## 🔁 Alur Kerja Proyek (End-to-End Pipeline)
 
-Proyek ini dikerjakan dengan alur yang sistematis dari pengumpulan data hingga visualisasi akhir, yang dibagi menjadi 3 tahapan utama:
+Proyek ini dikerjakan dengan alur yang sistematis dari pengolahan data mentah hingga menjadi laporan akhir yang siap pakai, terbagi menjadi 3 tahapan utama:
 
-### 1. Pembersihan Data (Data Cleansing)
-Data mentah dari lapangan seringkali tidak sempurna. Pada tahap ini, saya merapikan format data dan menangani data yang kosong (*missing values*). **Penanganan dilakukan secara spesifik sesuai karakteristik kolomnya:** untuk kolom tertentu saya menggunakan imputasi nilai tengah (*median*) agar tidak merusak distribusi, sementara untuk kolom lain saya menerapkan metode berbeda agar keaslian pola datanya tetap terjaga.
+### 1. Pembersihan Data Menyeluruh (Data Cleansing Pipeline)
+Data mentah dari lapangan memiliki banyak ketidaksempurnaan yang dapat membuat analisis menjadi bias. Tahap ini memastikan data benar-benar bersih dan valid melalui beberapa langkah:
+* **Penanganan Data Duplikat & Penyaringan Kolom:** Mendeteksi dan menghapus baris data yang ganda serta mengeliminasi kolom yang tidak relevan agar proses komputasi lebih cepat dan akurat.
+* **Standarisasi Teks & Karakter:** Merapikan penulisan teks yang berantakan (seperti menghapus spasi berlebih, menyamakan huruf besar-kecil pada nama lokasi, dan membersihkan simbol) agar data menjadi seragam dan konsisten.
+* **Penanganan Data Kosong (Missing Values) secara Spesifik:** Tidak semua data kosong diperlakukan sama. Untuk kolom angka tertentu, saya menggunakan nilai tengah (*median*) agar tidak merusak distribusi asli akibat nilai ekstrem (*outliers*), sementara untuk kolom lainnya diterapkan metode penyesuaian khusus yang sesuai dengan karakteristik datanya.
 
 ### 2. Pembuatan Metrik Bisnis (Feature Engineering)
-Untuk mendapatkan analisis yang lebih dalam, saya menciptakan indikator bisnis baru. Saya mengelompokkan restoran ke dalam segmen harga (Murah, Sedang, Mahal) dan merumuskan **Skor Popularitas**—sebuah metrik khusus yang menggabungkan tingkat kepuasan (*rating*) dengan seberapa ramai pelanggan berinteraksi (jumlah *votes*).
+Untuk mendapatkan analisis yang lebih tajam, saya menciptakan indikator bisnis baru berdasarkan data yang ada:
+* Mengelompokkan skala harga restoran ke dalam 3 segmen yang proporsional (Murah, Sedang, Mahal).
+* Merumuskan **Skor Popularitas**—sebuah metrik khusus yang menggabungkan tingkat kepuasan (*rating*) dengan seberapa aktif pelanggan berinteraksi (jumlah *votes*).
 
-### 3. Ekstraksi & Visualisasi Tren
-Data yang sudah matang kemudian dikelompokkan dan dihitung rata-ratanya untuk menjawab pertanyaan strategi bisnis. Hasil akhir diekspor ke Microsoft Excel untuk dibuatkan grafik visual agar mudah dipahami oleh tim bisnis.
+### 3. Ekstraksi & Visualisasi Tren Bisnis
+Data yang sudah matang kemudian dikelompokkan dan dihitung rata-ratanya berdasarkan variabel tertentu (seperti lokasi dan status online) untuk menjawab tantangan bisnis. Hasil akhir diekspor ke Microsoft Excel untuk dibuatkan grafik visual agar mudah dipahami oleh tim non-teknis.
+
+---
+
+> ### 💡 PEMBERITAHUAN UNTUK RECRUITER & ASSESSOR
+> Seluruh alur proses pembersihan data (*cleansing*), manipulasi, hingga pemodelan metrik bisnis di atas dieksekusi secara otomatis menggunakan *pipeline* Python yang terstruktur dari awal hingga akhir. Anda dapat mengakses dan meninjau seluruh kode pemrograman aslinya di dalam file **[`Notebook/Afif Febrian_Restaurant.ipynb`](Notebook/Afif%20Febrian_Restaurant.ipynb)**.
 
 ---
 
 ## 📌 Temuan Bisnis Utama (Key Findings)
 
 ### 1. Lokasi Paling Strategis untuk Ekspansi
-**Koramangala** adalah episentrum pasar F&B di Bangalore, mencetak lebih dari **4,2 juta interaksi pelanggan**. Area ini sangat direkomendasikan sebagai target utama jika perusahaan atau investor ingin membuka cabang baru.
+**Koramangala** adalah episentrum pasar F&B di Bangalore, mencetak lebih dari **4,2 juta interaksi pelanggan**. Area ini sangat direkomendasikan sebagai target utama jika perusahaan atau investor ingin membuka cabang baru karena pasarnya sudah terbukti sangat aktif.
 <br>![Insight Lokasi](Image/bussinescase1.png)
 
 ### 2. Strategi Harga vs Kepuasan Pelanggan
-Harga murah ternyata bukan jaminan pelanggan akan puas. Restoran di kategori harga **"Mahal"** justru secara konsisten meraih rata-rata *rating* tertinggi (3.93/5). Ini membuktikan bahwa pelanggan di Bangalore sangat memprioritaskan kualitas dan pengalaman premium.
+Harga murah ternyata bukan jaminan pelanggan akan puas. Restoran di kategori harga **"Mahal"** justru secara konsisten meraih rata-rata *rating* tertinggi (3.93/5). Ini membuktikan bahwa pelanggan di Bangalore sangat memprioritaskan kualitas dan pengalaman premium dibandingkan sekadar harga murah.
 <br>![Insight Harga](Image/bussinescase2.png)
 
 ### 3. Pentingnya Transformasi Digital
@@ -51,7 +61,3 @@ Untuk memudahkan navigasi evaluasi proyek, file disusun dengan rapi sebagai beri
 │   └── processed/      # Data bersih hasil olahan yang siap pakai (Zomato_Final_Analysis.xlsx)
 ├── Image/              # Direktori penyimpanan hasil grafik visualisasi (.png)
 └── Notebook/           # 💻 File utama berisi kode Python lengkap (Jupyter Notebook)
-
-
-
-
